@@ -150,8 +150,8 @@
 		                            <span id="reset-form-btn" class="btn btn-cancel">Reset</span>
 		                            <button class="btn btn-submit">Submit</button>
 		                        </div>
-		                        <div class="form-footer">
-		                            
+		                        <div class="form-footer pb-10">
+		                            Sections can be added after creating the quiz.
 		                        </div>
 		                    </form>
 		                </div>

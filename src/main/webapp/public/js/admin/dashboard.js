@@ -83,7 +83,7 @@ for(let i=0; i<forms.length; i++) {
 	}
 }
 
-
+// CREATE QUIZ
 $('#create-quiz-form').on('submit', (e) => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -126,6 +126,53 @@ $('#create-quiz-form').on('submit', (e) => {
 			}
 	
             
+        }, 
+        data: reqData
+    })
+})
+
+// UPDATE QUIZ
+
+$('#admin-profile-form').on('submit', (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    let form = new FormData(e.target)
+    let reqData = {
+        firstName: form.get('firstName'),
+        lastName: form.get('lastName'),
+        contact: form.get('contact'),
+        gender: form.get('gender'),
+        institution: form.get('institution'), 
+        dateOfBirth: form.get('dateOfBirth')
+    }
+    console.log(reqData)
+    
+    $.ajax({
+        url: 'admin-profile',
+        type: 'POST',
+        success: () => {
+
+        },
+        complete: (res) => {
+            let msgIcon = '<i class="fa fa-exclamation-circle mr-5"></i>'
+            res = JSON.parse(res.responseText)
+			console.log(res)
+            console.log(res)
+            let responseMsg = document.getElementById('admin-profile-form').getElementsByClassName('form-response')
+            if(res.error) {
+                let errorLog = res.errorLog
+                console.log(errorLog)
+                for(let i=0; i<responseMsg.length; i++) {
+					if(errorLog[i] != '')
+                    	responseMsg[i].innerHTML =  msgIcon + errorLog[i]
+					else responseMsg[i].innerHTML =  ''
+                }
+            }
+            else {
+				let a = document.createElement('a')
+				a.href = 'admin-profile'
+				a.click()
+            }
         }, 
         data: reqData
     })

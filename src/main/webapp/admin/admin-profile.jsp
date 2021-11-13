@@ -43,6 +43,7 @@
                 <div class="component">
                     <h2 class="component-header">Profile</h2>
                     <div>
+						<%@ include file="/includes/flash-message.jsp" %>  
                     	<div class="form-container">
 		                    <form id="admin-profile-form">
 		                        <div class="form-block flex-row flex-1">

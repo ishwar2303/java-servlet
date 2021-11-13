@@ -162,7 +162,6 @@ public class AdminRegister extends HttpServlet {
 			
 		}
 		else {
-			System.out.println("Else");
 			error = "Please fill required fields appropriately";
 		}
 		JSONObject json = new JSONObject();
