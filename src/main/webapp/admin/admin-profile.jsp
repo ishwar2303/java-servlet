@@ -44,7 +44,7 @@
                     <h2 class="component-header">Profile</h2>
                     <div>
                     	<div class="form-container">
-		                    <form id="create-quiz-form">
+		                    <form id="admin-profile-form">
 		                        <div class="form-block flex-row flex-1">
 		                            <div class="input-container">
 		                                <label >First Name</label>
@@ -93,6 +93,8 @@
 		                                    </label>
 		                                </div>
 		                                <div class="form-response"></div>
+		                            </div>
+		                            <div class="input-container">
 		                            </div>
 		                        </div>
 		                        <div class="form-block flex-row flex-1">

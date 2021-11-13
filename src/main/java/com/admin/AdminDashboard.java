@@ -16,6 +16,11 @@ public class AdminDashboard extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		String flashSuccess = (String) session.getAttribute("flashSuccess");
+		if(flashSuccess != null) {
+			req.setAttribute("flashSuccess", flashSuccess);
+			session.removeAttribute("flashSuccess");
+		}
 		req.setAttribute("adminFirstName", session.getAttribute("adminFirstName"));
 		req.setAttribute("adminEmail", session.getAttribute("adminEmail"));
 

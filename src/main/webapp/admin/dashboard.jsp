@@ -20,6 +20,7 @@
                 <div class="component">
                     <h2 class="component-header">Dashboard</h2>
                     <div>
+						<%@ include file="/includes/flash-message.jsp" %>  
                     	
                     </div>
 	                

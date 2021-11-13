@@ -1,3 +1,4 @@
+// TOGGLE PANLEL
 const togglePanel = document.getElementById('toggle-panel')
 var control = false
 togglePanel.addEventListener('click', () => {
@@ -11,12 +12,14 @@ togglePanel.addEventListener('click', () => {
     control = !control
 })
 
-
+// HIDE ELEMENT OVERLAY
 var hideElement
 const overlay = document.getElementById('overlay')
 const changePasswordBtn = document.getElementById('change-password')
 const changePasswordDialog = document.getElementById('change-password-dialog')
 
+
+// CHANGE PASSWORD DIALOG
 changePasswordBtn.addEventListener('click', () => {
 	changePasswordDialog.style.display = 'block'
 	hideElement = changePasswordDialog
@@ -28,6 +31,7 @@ overlay.addEventListener('click', () => {
 	overlay.style.display = 'none'
 })
 
+// CHANGE PASSWORD REQUEST
 $('#admin-change-password-form').on('submit', (e) => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -68,7 +72,7 @@ $('#admin-change-password-form').on('submit', (e) => {
     })
 })
 
-
+// FORM CANCEL/RESET BUTTON
 const forms = document.getElementsByTagName('form')
 for(let i=0; i<forms.length; i++) {
 	let resetBtn = forms[i].getElementsByClassName('btn-cancel')[0]
@@ -78,3 +82,51 @@ for(let i=0; i<forms.length; i++) {
 		})
 	}
 }
+
+
+$('#create-quiz-form').on('submit', (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+    let form = new FormData(e.target)
+    let reqData = {
+		quizName: form.get('quizName'),
+		quizDescription: form.get('quizDescription'),
+		quizKey: form.get('quizKey'),
+		state: form.get('state'),
+		difficultyLevel: form.get('difficultyLevel'),
+		duration: form.get('duration'),
+		startTime: form.get('startTime'),
+		endTime: form.get('endTime')
+    }
+	console.log(reqData)
+    $.ajax({
+        url: 'create-quiz',
+        type: 'POST',
+        success: () => {
+
+        },
+        complete: (res) => {
+            let msgIcon = '<i class="fa fa-exclamation-circle mr-5"></i>'
+            res = JSON.parse(res.responseText)
+			console.log(res)
+            let responseMsg = document.getElementById('create-quiz-form').getElementsByClassName('form-response')
+            if(res.error) {
+                let errorLog = res.errorLog
+                console.log(errorLog)
+                for(let i=0; i<responseMsg.length; i++) {
+					if(errorLog[i] != '')
+                    	responseMsg[i].innerHTML =  msgIcon + errorLog[i]
+					else responseMsg[i].innerHTML =  ''
+                }
+            }
+			else {
+				let a = document.createElement('a')
+				a.href = 'admin-dashboard' 
+				a.click()
+			}
+	
+            
+        }, 
+        data: reqData
+    })
+})
